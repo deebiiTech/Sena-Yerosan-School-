@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Sena Yerosan School</title>
-     <!-- Icon/Favicon Logo Dhaabbataa -->
+    <!-- Icon/Favicon Logo Dhaabbataa -->
     <link rel="icon" type="image/png" href="Seenaa Y.png">
     <link rel="apple-touch-icon" href="Seenaa Y.png">
     <link rel="stylesheet" href="style.css">
@@ -54,7 +54,7 @@
                     <button onclick="switchAdminTab('vacancies', this)">Beeksisa Hojii</button>
                 </div>
                 <div class="card">
-                    <!-- Tab 1 -->
+                    <!-- Tab 1: Labsii Maxxansuu -->
                     <div id="tab-announcements" class="admin-tab-content">
                         <h3>Labsii Haaraa Maxxansuu</h3>
                         <div class="form-group" style="margin-top: 1rem;">
@@ -62,13 +62,17 @@
                             <input type="text" id="newAnnTitle" placeholder="Mata duree...">
                         </div>
                         <div class="form-group">
+                            <label>Suuraa Labsii (Image)</label>
+                            <input type="file" id="newAnnImage" accept="image/*">
+                        </div>
+                        <div class="form-group">
                             <label>Qabiyyee Labsii</label>
                             <textarea id="newAnnBody" rows="4" placeholder="Odeeffannoo labsii..."></textarea>
                         </div>
-                        <button class="btn-primary" onclick="postAnnouncement()">Maxxansi</button>
+                        <button class="btn-primary" onclick="postAnnouncement()">Maxxansi Suuraa Waliin</button>
                     </div>
 
-                    <!-- Tab 2 -->
+                    <!-- Tab 2: Iyyata Galmee -->
                     <div id="tab-applications" class="admin-tab-content" style="display: none;">
                         <h3>Iyyata Galmee Barattootaa</h3>
                         <table class="data-table">
@@ -85,7 +89,7 @@
                         </table>
                     </div>
 
-                    <!-- Tab 3 -->
+                    <!-- Tab 3: Beeksisa Hojii -->
                     <div id="tab-vacancies" class="admin-tab-content" style="display: none;">
                         <h3>Beeksisa Hojii Haaraa Baasuu</h3>
                         <div class="form-group" style="margin-top: 1rem;">
@@ -93,10 +97,14 @@
                             <input type="text" id="newJobTitle" placeholder="Fkn: Barsiisaa Economics">
                         </div>
                         <div class="form-group">
+                            <label>Suuraa Beeksisaa (Banner Image)</label>
+                            <input type="file" id="newJobImage" accept="image/*">
+                        </div>
+                        <div class="form-group">
                             <label>Ibsa Hojii fi Ulaagaa</label>
                             <textarea id="newJobDesc" rows="3" placeholder="Ulaagaaleen barbaachisan..."></textarea>
                         </div>
-                        <button class="btn-primary" onclick="postVacancy()">Maxxansi</button>
+                        <button class="btn-primary" onclick="postVacancy()">Maxxansi Suuraa Waliin</button>
                     </div>
                 </div>
             </div>
