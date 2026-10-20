@@ -1,0 +1,81 @@
+{
+  "schoolInfo": {
+    "name": "Sena Yerosan School of Excellence",
+    "motto": "Pride in Excellence!",
+    "establishedYear": 2006,
+    "logo": "Seenaa Y.png",
+    "icon": "Seenaa Y.png",
+    "developer": "Kajela Hambisa",
+    "branches": [
+      {
+        "name": "Damee Ganda Haraa",
+        "location": "Adaamaa, Ganda Haraa"
+      },
+      {
+        "name": "Damee Boolee",
+        "location": "Adaamaa, Boolee"
+      }
+    ]
+  },
+  "contactInfo": {
+    "phone": "+251 22 111 2233 / +251 91 123 4567",
+    "email": "info@senayerosan.edu.et",
+    "address": "Adaamaa, Oromiyaa, Itoophiyaa",
+    "facebook": "https://www.facebook.com/100083057266469/"
+  },
+  "adminCredentials": {
+    "username": "admin_sena",
+    "passwordHash": "sena@2026_secure",
+    "role": "Super Admin"
+  },
+  "announcements": [
+    {
+      "id": 101,
+      "date": "2026-10-15",
+      "title": "Badhaasa Qabxii Kutaa 8ffaa fi 6ffaa",
+      "body": "Barattoonni keenya qormaata naannoo kutaa 8ffaa fi 6ffaa irratti qabxii olaanaa galmeessisuun magaalaa Adaamaatti badhaafamanii jiru."
+    },
+    {
+      "id": 102,
+      "date": "2026-09-01",
+      "title": "Galmeen Barattoota Haaraa Banameera",
+      "body": "Bara barnoota haaraaf galmeen daaimmanii (Kindergarten), Primary (1-8) fi Secondary (9-12) banamuu isaa maatii hundaaf beeksifna."
+    }
+  ],
+  "academics": [
+    {
+      "level": "Kindergarten (KG)",
+      "description": "Daaimmanii qophii sammuu, tapha fi barnoota bu'uuraa dandeettii hawaasummaa csmittiin qopheessuu.",
+      "image": "Seenaa Y.png"
+    },
+    {
+      "level": "Primary School (Kutaa 1ffaa - 8ffaa)",
+      "description": "Barnoota bu'uuraa ammayyaa, saayinsii fi afaanii irratti xiyyeeffachuun qormaata naannoof barattoota gahaa gochuu.",
+      "image": "Seenaa Y.png"
+    },
+    {
+      "level": "Secondary School (Kutaa 9ffaa - 12ffaa)",
+      "description": "Qophii qormaata biyyoolessaa, teeknooloojii kompiitaraa fi saayinsii waliin barsiisuun barattoota yuunivarsiitiif qopheessuu.",
+      "image": "Seenaa Y.png"
+    }
+  ],
+  "vacancies": [
+    {
+      "id": 201,
+      "title": "Barsiisaa Saayinsii Guutuu",
+      "department": "Primary School",
+      "description": "Digrii jalqabaa Saayinsiidhaan kan qabu fi muuxannoo barsiisummaa waggaa 2+ kan qabu."
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "studentName": "Caalaa Kumaa",
+      "gradeLevel": "Primary (1-8)",
+      "parentName": "Kumaa Boonaa",
+      "phone": "0911223344",
+      "branch": "Ganda Haraa",
+      "status": "Pending"
+    }
+  ]
+}

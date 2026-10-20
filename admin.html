@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Sena Yerosan School</title>
+     <!-- Icon/Favicon Logo Dhaabbataa -->
+    <link rel="icon" type="image/png" href="Seenaa Y.png">
+    <link rel="apple-touch-icon" href="Seenaa Y.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="brand-logo">
+            <img src="Seenaa Y.png" alt="Sena Yerosan Logo">
+            <h1>Admin Panel</h1>
+        </a>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Gara Weebsaayitiitti Deebi'i</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div id="admin-login-view" class="admin-login-card">
+            <img src="Seenaa Y.png" alt="Admin Logo" style="width: 60px; margin-bottom: 1rem;">
+            <h2 style="color: var(--primary); margin-bottom: 1rem;">Admin Seensaa</h2>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group" style="text-align: left;">
+                    <label>Username</label>
+                    <input type="text" id="adminUser" required placeholder="Username galchi">
+                </div>
+                <div class="form-group" style="text-align: left;">
+                    <label>Password</label>
+                    <input type="password" id="adminPass" required placeholder="Password galchi">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Seeni (Login)</button>
+                <p id="login-error-msg" style="color: red; margin-top: 10px; font-size: 0.9rem;"></p>
+            </form>
+        </div>
+
+        <!-- Dashboard Panel -->
+        <div id="admin-dashboard-view" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="color: var(--primary);">Bulchiinsa Systemaa Dashboard</h2>
+                <button onclick="handleAdminLogout()" class="btn-primary" style="background-color: #E53E3E; color: white;">Bahuu (Logout)</button>
+            </div>
+
+            <div class="admin-layout">
+                <div class="admin-sidebar">
+                    <button class="active" onclick="switchAdminTab('announcements', this)">Labsii Maxxansuu</button>
+                    <button onclick="switchAdminTab('applications', this)">Iyyata Galmee Maatii</button>
+                    <button onclick="switchAdminTab('vacancies', this)">Beeksisa Hojii</button>
+                </div>
+                <div class="card">
+                    <!-- Tab 1 -->
+                    <div id="tab-announcements" class="admin-tab-content">
+                        <h3>Labsii Haaraa Maxxansuu</h3>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label>Mata Duree Labsii</label>
+                            <input type="text" id="newAnnTitle" placeholder="Mata duree...">
+                        </div>
+                        <div class="form-group">
+                            <label>Qabiyyee Labsii</label>
+                            <textarea id="newAnnBody" rows="4" placeholder="Odeeffannoo labsii..."></textarea>
+                        </div>
+                        <button class="btn-primary" onclick="postAnnouncement()">Maxxansi</button>
+                    </div>
+
+                    <!-- Tab 2 -->
+                    <div id="tab-applications" class="admin-tab-content" style="display: none;">
+                        <h3>Iyyata Galmee Barattootaa</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Barataa</th>
+                                    <th>Grade</th>
+                                    <th>Maatii</th>
+                                    <th>Bilbila</th>
+                                    <th>Damee</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationsTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tab 3 -->
+                    <div id="tab-vacancies" class="admin-tab-content" style="display: none;">
+                        <h3>Beeksisa Hojii Haaraa Baasuu</h3>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label>Gittii Hojii (Job Title)</label>
+                            <input type="text" id="newJobTitle" placeholder="Fkn: Barsiisaa Economics">
+                        </div>
+                        <div class="form-group">
+                            <label>Ibsa Hojii fi Ulaagaa</label>
+                            <textarea id="newJobDesc" rows="3" placeholder="Ulaagaaleen barbaachisan..."></textarea>
+                        </div>
+                        <button class="btn-primary" onclick="postVacancy()">Maxxansi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo-wrap">
+            <img src="Seenaa Y.png" alt="Footer Logo">
+            <h3>Sena Yerosan School of Excellence</h3>
+        </div>
+        <p>&copy; 2026 Sena Yerosan School of Excellence. All Rights Reserved.</p>
+        <p style="font-size: 0.85rem; color: var(--secondary); margin-top: 5px;">Developed By Kajela Hambisa | 0910166955</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

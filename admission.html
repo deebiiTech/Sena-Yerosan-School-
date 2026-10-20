@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galmee - Sena Yerosan School</title>
+     <!-- Icon/Favicon Logo Dhaabbataa -->
+    <link rel="icon" type="image/png" href="Seenaa Y.png">
+    <link rel="apple-touch-icon" href="Seenaa Y.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="brand-logo">
+            <img src="Seenaa Y.png" alt="Sena Yerosan Logo">
+            <h1>Sena Yerosan</h1>
+        </a>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Fuula Duraa</a></li>
+            <li><a href="about.html">Waa'ee Keenya</a></li>
+            <li><a href="academics.html">Barnoota</a></li>
+            <li><a href="admission.html" class="active">Galmee</a></li>
+            <li><a href="contact.html">Quunnamtii</a></li>
+            <li><a href="admin.html" class="admin-nav-btn">Admin Panel</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <h2 style="color: var(--primary); text-align: center; margin-bottom: 1.5rem;">Unka Galmee Barattoota Haaraa</h2>
+        <div class="form-container">
+            <form onsubmit="submitApplication(event)">
+                <div class="form-group">
+                    <label>Maqaa Guutuu Barataa/tuu</label>
+                    <input type="text" id="appStudentName" required placeholder="Fkn: Caalaa Kumaa">
+                </div>
+                <div class="form-group">
+                    <label>Sadarkaa Barnootaa (Grade Level)</label>
+                    <select id="appGrade" required>
+                        <option value="">Filadhu...</option>
+                        <option value="KG">Kindergarten (KG)</option>
+                        <option value="Primary (1-8)">Primary (Kutaa 1-8)</option>
+                        <option value="Secondary (9-12)">Secondary (Kutaa 9-12)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Maqaa Maatii / Deeggaraa</label>
+                    <input type="text" id="appParentName" required placeholder="Fkn: Kumaa Boonaa">
+                </div>
+                <div class="form-group">
+                    <label>Lakkoofsa Bilbilaa</label>
+                    <input type="tel" id="appPhone" required placeholder="09...">
+                </div>
+                <div class="form-group">
+                    <label>Damee Barachuu Barbaadan</label>
+                    <select id="appBranch" required>
+                        <option value="Ganda Haraa">Damee Ganda Haraa</option>
+                        <option value="Boolee">Damee Boolee</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Iyyata Galchii</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo-wrap">
+            <img src="Seenaa Y.png" alt="Footer Logo">
+            <h3>Sena Yerosan School of Excellence</h3>
+        </div>
+        <p>&copy; 2026 Sena Yerosan School of Excellence. All Rights Reserved.</p>
+        <p style="font-size: 0.85rem; color: var(--secondary); margin-top: 5px;">Developed By Kajela Hambisa | 0910166955</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
