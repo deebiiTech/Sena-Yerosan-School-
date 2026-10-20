@@ -7,14 +7,28 @@ const defaultData = {
     icon: "Seenaa Y.png"
   },
   announcements: [
-    { id: 1, title: "Badhaasa Qabxii Kutaa 8ffaa", body: "Barattoonni keenya qormaata naannoo kutaa 8ffaa irratti qabxii olaanaa galmeessisuun badhaafamanii jiru." },
-    { id: 2, title: "Galmeen Barattoota Haaraa Banameera", body: "Bara barnoota haaraaf galmeen daaimmanii fi barattoota sadarkaa 1ffaa & 2ffaa banamuu isaa isin beeksisna." }
+    { 
+      id: 1, 
+      title: "Badhaasa Qabxii Kutaa 8ffaa", 
+      body: "Barattoonni keenya qormaata naannoo kutaa 8ffaa irratti qabxii olaanaa galmeessisuun badhaafamanii jiru.",
+      image: "Seenaa Y.png"
+    },
+    { 
+      id: 2, 
+      title: "Galmeen Barattoota Haaraa Banameera", 
+      body: "Bara barnoota haaraaf galmeen daaimmanii fi barattoota sadarkaa 1ffaa & 2ffaa banamuu isaa isin beeksisna.",
+      image: "Seenaa Y.png"
+    }
   ],
   applications: [
     { name: "Abebe Kebede", grade: "Primary (1-8)", parent: "Kebede Tola", phone: "0911000000", branch: "Ganda Haraa" }
   ],
   vacancies: [
-    { title: "Barsiisaa Saayinsii Guutuu", desc: "Digrii jalqabaa kan qabu fi muuxannoo waggaa 2+ kan qabu." }
+    { 
+      title: "Barsiisaa Saayinsii Guutuu", 
+      desc: "Digrii jalqabaa kan qabu fi muuxannoo waggaa 2+ kan qabu.",
+      image: "Seenaa Y.png"
+    }
   ]
 };
 
@@ -42,12 +56,10 @@ async function setupSchoolIconsAndData() {
     if (response.ok) {
       const jsonData = await response.json();
 
-      // If LocalStorage is empty, initialize with JSON content
       if (!localStorage.getItem('sena_school_data')) {
         saveSystemData(jsonData);
       }
 
-      // Update Favicon (Browser Tab Icon)
       const iconPath = jsonData.schoolInfo?.icon || "Seenaa Y.png";
       let iconLink = document.querySelector("link[rel*='icon']");
       if (!iconLink) {
@@ -58,7 +70,6 @@ async function setupSchoolIconsAndData() {
       }
       iconLink.href = iconPath;
 
-      // Update Header & Footer Logos
       const logoPath = jsonData.schoolInfo?.logo || "Seenaa Y.png";
       const logos = document.querySelectorAll('.brand-logo img, .footer-logo-wrap img');
       logos.forEach(img => {
@@ -70,28 +81,34 @@ async function setupSchoolIconsAndData() {
   }
 }
 
-// Render dynamic content on Home page
+// Render dynamic announcements with image on Home page
 function renderHomeContent() {
   const annContainer = document.getElementById('announcement-feed');
   if (!annContainer) return;
   const data = getSystemData();
   annContainer.innerHTML = data.announcements.map(ann => `
-    <div class="card">
-      <h3>${ann.title}</h3>
-      <p>${ann.body}</p>
+    <div class="card" style="overflow: hidden; padding: 0;">
+      ${ann.image ? `<img src="${ann.image}" alt="${ann.title}" style="width:100%; height:180px; object-fit:cover;">` : ''}
+      <div style="padding: 1.5rem;">
+        <h3 style="margin-bottom:0.5rem; color:var(--primary);">${ann.title}</h3>
+        <p>${ann.body}</p>
+      </div>
     </div>
   `).join('');
 }
 
-// Render dynamic vacancies on Contact/Vacancy page
+// Render dynamic vacancies with image on Contact/Vacancy page
 function renderVacancies() {
   const vacContainer = document.getElementById('vacancy-list-feed');
   if (!vacContainer) return;
   const data = getSystemData();
   vacContainer.innerHTML = data.vacancies.map(vac => `
-    <div style="background:#F7FAFC; padding:1rem; border-radius:6px; margin-bottom:10px;">
-      <h4 style="color:var(--primary);">${vac.title}</h4>
-      <p>${vac.desc}</p>
+    <div style="background:#FFFFFF; border: 1px solid #E2E8F0; border-radius:8px; margin-bottom:15px; overflow:hidden; display:flex; flex-wrap:wrap; gap:15px; box-shadow: var(--shadow);">
+      ${vac.image ? `<img src="${vac.image}" alt="${vac.title}" style="width:180px; height:130px; object-fit:cover;">` : ''}
+      <div style="padding: 1rem; flex: 1;">
+        <h4 style="color:var(--primary); font-size:1.1rem; margin-bottom:0.4rem;">${vac.title}</h4>
+        <p style="color:var(--text-dark);">${vac.desc}</p>
+      </div>
     </div>
   `).join('');
 }
@@ -111,6 +128,70 @@ function submitApplication(e) {
   saveSystemData(data);
   alert("Iyyanni keessan milkaa'inaan ergameera!");
   e.target.reset();
+}
+
+// Helper: Convert uploaded file to Base64 URL
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
+// Post Announcement with Image
+async function postAnnouncement() {
+  const title = document.getElementById('newAnnTitle').value;
+  const body = document.getElementById('newAnnBody').value;
+  const imgInput = document.getElementById('newAnnImage');
+  
+  if (title && body) {
+    let imgData = "Seenaa Y.png"; // Default fallback image
+    if (imgInput && imgInput.files[0]) {
+      imgData = await getBase64(imgInput.files[0]);
+    }
+
+    const data = getSystemData();
+    data.announcements.unshift({ id: Date.now(), title, body, image: imgData });
+    saveSystemData(data);
+    alert("Labsii haaraa suuraa waliin maxxanfameera!");
+    
+    document.getElementById('newAnnTitle').value = '';
+    document.getElementById('newAnnBody').value = '';
+    if (imgInput) imgInput.value = '';
+    
+    renderHomeContent();
+  } else {
+    alert("Mee mata duree fi qabiyyee labsii guutaa!");
+  }
+}
+
+// Post Vacancy with Image
+async function postVacancy() {
+  const title = document.getElementById('newJobTitle').value;
+  const desc = document.getElementById('newJobDesc').value;
+  const imgInput = document.getElementById('newJobImage');
+  
+  if (title && desc) {
+    let imgData = "Seenaa Y.png"; // Default fallback image
+    if (imgInput && imgInput.files[0]) {
+      imgData = await getBase64(imgInput.files[0]);
+    }
+
+    const data = getSystemData();
+    data.vacancies.unshift({ title, desc, image: imgData });
+    saveSystemData(data);
+    alert("Beeksisi hojii suuraa waliin maxxanfameera!");
+    
+    document.getElementById('newJobTitle').value = '';
+    document.getElementById('newJobDesc').value = '';
+    if (imgInput) imgInput.value = '';
+    
+    renderVacancies();
+  } else {
+    alert("Mee mata duree fi ibsa hojii guutaa!");
+  }
 }
 
 // Admin Panel Auth & Actions
@@ -162,34 +243,6 @@ function renderAdminData() {
         <td>${app.branch}</td>
       </tr>
     `).join('');
-  }
-}
-
-function postAnnouncement() {
-  const title = document.getElementById('newAnnTitle').value;
-  const body = document.getElementById('newAnnBody').value;
-  if (title && body) {
-    const data = getSystemData();
-    data.announcements.unshift({ id: Date.now(), title, body });
-    saveSystemData(data);
-    alert("Labsii haaraa maxxanfameera!");
-    document.getElementById('newAnnTitle').value = '';
-    document.getElementById('newAnnBody').value = '';
-    renderHomeContent();
-  }
-}
-
-function postVacancy() {
-  const title = document.getElementById('newJobTitle').value;
-  const desc = document.getElementById('newJobDesc').value;
-  if (title && desc) {
-    const data = getSystemData();
-    data.vacancies.unshift({ title, desc });
-    saveSystemData(data);
-    alert("Beeksisi hojii maxxanfameera!");
-    document.getElementById('newJobTitle').value = '';
-    document.getElementById('newJobDesc').value = '';
-    renderVacancies();
   }
 }
 
